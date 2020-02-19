@@ -19,9 +19,10 @@ class ImageAdapter constructor(private val mContext: Context, private val images
             convertView = layoutInflater.inflate(R.layout.card_view, null)
         }
         val image = convertView!!.added_picture
-//        image.setImageResource(images[position])
-        Glide.with(mContext).load(R.drawable.filled_rectangle).into(image)
-        Log.d("image", "$image")
+        Glide.with(mContext).load(R.drawable.filled_rectangle).into(image).run {
+            Log.d("image", "${image.width}")
+        }
+//        Log.d("image", "${convertView.layoutParams}")
         return convertView
     }
 

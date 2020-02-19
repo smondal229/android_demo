@@ -30,8 +30,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        gridView.adapter = ImageAdapter(this, Array(6, {R.drawable.filled_rectangle}))
+        gridView.adapter = ImageAdapter(this, Array(6, {R.drawable.filled_rectangle} ))
 //        for(i in 0..5)
 //        {
 //            val inflater = LayoutInflater.from(this@MainActivity)
