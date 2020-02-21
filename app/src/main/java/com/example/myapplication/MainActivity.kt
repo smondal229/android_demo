@@ -19,6 +19,8 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.get
 import androidx.core.view.setMargins
 import androidx.core.view.size
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -31,13 +33,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         gridView.adapter = ImageAdapter(this, Array(6, {R.drawable.filled_rectangle} ))
-//        for(i in 0..5)
-//        {
-//            val inflater = LayoutInflater.from(this@MainActivity)
-//            val cvw = inflater.inflate(R.layout.card_view, imageGrid, false) as CardView
-//            imageGrid.addView(cvw)
-//            Log.d("image adapter", imageGrid.get(i).toString())
-//        }
 
         fun selectImage(position:Int=-1) {
             val options = arrayOf("Take Photo", "Choose from Gallery","Cancel")
@@ -99,10 +94,8 @@ class MainActivity : AppCompatActivity() {
         if (data != null) {
             when (requestCode) {
                 GogalIntent.CAMERA_REQUEST -> {
-                    Log.d("Camera-data", "${data.extras}")
                     val image: Bitmap? = data.extras!!.get("data") as Bitmap
-                    Log.d("Image", "$image")
-                    profile_pic.setImageBitmap(image)
+                    Glide.with(this).load(image).apply(RequestOptions.circleCropTransform()).into(profile_pic);
                 }
 
                 GogalIntent.PROFILE_IMAGE_GALLERY -> {
@@ -130,7 +123,7 @@ class MainActivity : AppCompatActivity() {
 
                 GogalIntent.GRID_VIEW_CAMERA_REQUEST -> {
                     val image: Bitmap? = data.extras!!.get("data") as Bitmap
-                    val iv = imageGrid[initialGridPosition] as ImageView
+                    val iv = gridView[initialGridPosition] as ImageView
                     Log.d("msg", "$iv")
                     iv.setImageBitmap(image)
                 }

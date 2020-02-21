@@ -7,7 +7,13 @@
   app:cardElevation="6dp"
   app:cardCornerRadius="5dp">
   <ImageView
-    android:layout_height="100dp"
+    android:layout_height="40dp"
+    android:layout_width="40dp"
+    android:src="@drawable/ic_cross_128px"
+    android:layout_gravity="right"
+    />
+  <ImageView
+    android:layout_height="120dp"
     android:layout_width="match_parent"
     android:id="@+id/added_picture"
     />

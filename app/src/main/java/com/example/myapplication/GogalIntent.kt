@@ -25,13 +25,12 @@ class GogalIntent internal constructor(private val mContext: Context): Activity(
     fun captureImage() {
         val callCameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
-        if(callCameraIntent.resolveActivity(mContext.packageManager)!=null){
+        if(callCameraIntent.resolveActivity(mContext.packageManager)!=null) {
             (mContext as Activity).startActivityForResult(callCameraIntent, CAMERA_REQUEST)
         }
     }
 
     fun fromGallery() {
-        Log.d("msg", "gallery")
         val galleryIntent = Intent().apply {
             action = Intent.ACTION_GET_CONTENT
             type = "image/*"
